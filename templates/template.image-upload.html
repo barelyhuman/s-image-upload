@@ -1,0 +1,114 @@
+<style>
+    .simage-upload-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .simage-block {
+        border: 1px solid #ddd;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+    }
+
+    .simage-block img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .simage-block.uploader {
+        display: flex;
+        border: 0px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .simage-block.uploader input {
+        display: none;
+    }
+
+    .simage-block.uploader label {
+        height: 50px;
+        width: 50px;
+        background: #555;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .simage-block.uploader label svg {
+        height: 35%;
+        fill: #eceff1;
+    }
+
+
+    .simage-block.uploader:hover svg {
+        fill: #2ab6b6;
+    }
+
+    .uploadButton {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #2ab6b6;
+        border-color: #2ab6b6;
+        color: #FFFFFF;
+    } 
+
+    .uploadButton:hover {
+        color: #fff;
+        background-color: #2ab6b6;
+        border-color: #1b6d85;
+    }
+</style>
+
+
+
+
+
+
+<!-- //Uploader Template -->
+<div class="simage-upload-container">
+    <div class="simage-block" ng-repeat="image in allImages track by $index">
+        <img src="{{image.url}}">
+    </div>
+    <div class="simage-block uploader">
+        <label for="{{elementId}}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"
+                />
+            </svg>
+        </label>
+        <input id="{{elementId}}" type="file" ng-model="toUpload" accept="image/*" multiple>
+    </div>    
+</div>
+<div ng-show="uploading">
+    Uploading...
+</div>
+<div ng-show="!uploading && showUploadButton()" class="uploadButton" ng-click="uploadClick()">
+    Upload
+</div>

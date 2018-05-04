@@ -1,0 +1,26 @@
+{
+  "name": "angularjs-image-upload-directive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.0",
+    "browserify-html": "^0.0.1",
+    "parallelshell": "^3.0.2",
+    "stringify": "^5.2.0",
+    "watchify": "^3.11.0"
+  },
+  "dependencies": {
+    "angular": "^1.6.10",
+    "lodash": "^4.17.10"
+  },
+  "scripts": {
+    "build": "mkdir -p build && browserify src/directive.js -t babelify -t [stringify --extensions [.html] ] -v -o build/s-image-upload.js",
+    "watch": "mkdir -p dist && watchify src/app.js -t babelify -t [stringify --extensions [.html] ] -v -o dist/bundle.js",
+    "server": "live-server --entry-file=index.html --no-browser",
+    "start": "parallelshell 'yarn watch' 'yarn server'"
+  }
+}
